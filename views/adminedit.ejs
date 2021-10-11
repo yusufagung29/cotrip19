@@ -1,0 +1,48 @@
+<%- include('_header') %>
+
+    <body style="padding:20px" class="animate__animated animate__fadeInUp">
+        <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+            <p>As country representative, you can edit your citizen vaccination status with following parameters : </p>
+            <p><b>0</b> if your citizen has not been received any vaccine yet</p>
+            <p><b>1</b> if your citizen has been received phase 1 vaccine</p>
+            <p><b>2</b> if your citizen has been received phase 2 vaccine</p>
+
+            <% for ( var i = 0, len = model.length; i < 1; i++) {%>
+    
+                <form  class = "back" action="/admindashboard2" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" class="origin" id ="origin" name="origin" value="<%=model[i].origin%>">
+                    </div> 
+                    <button  class="btn btn-dark"  type="submit">Back</button>
+                </form>
+                <% }; %>
+        </div>
+
+        <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        </form>
+        <table class="table table-bordered" style="text-align: center; margin-right: 30px;">
+            <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Passport Number</th>
+                        <th>Vaccination Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+            </thead>
+            <tbody>
+                <% model.forEach(function(tourist) { %>
+                    <tr>
+                        <td><%=tourist.name %></td>
+                        <td><%=tourist.pass_num %></td>
+                        <td><%=tourist.vacc %></td>
+                        <td> <a  class="btn btn-danger" href="/updatevacc/<%= tourist.id %>">Edit</a></td>
+                        <% }); %>
+                    </tr>
+            </tbody>
+        </table>  
+
+        </div>
+    
+    <%- include('_footer') %>
+    </body>

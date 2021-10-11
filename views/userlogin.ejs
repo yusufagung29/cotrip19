@@ -1,0 +1,27 @@
+<%- include('_header') %>
+
+<body style="padding: 50px;" class="animate__animated animate__fadeInUp p-3 mb-2 bg-primary">
+    <div class = "card" style="padding:20px; margin:12% auto; width: 50%;">
+        <h3>You are Logging In as a tourist</h3>
+        <form action="/userdashboard" method="POST">
+            <div class="form-group">
+                  <label for="username">username</label>
+                  <input type="text" name="username" id="username" placeholder="username" class="form-control">
+            </div>
+          
+              <div class="form-group">
+                  <label for="password">password</label>
+                  <input type="password" name="password" id="password" placeholder="password" class="form-control">
+              </div>
+          
+          
+              <button  class="btn btn-primary"  type="submit">Log in</button>
+              
+          </form>
+          <p> doesn't have account?    <a href="/usercreate">Create</a></p>  
+          <a href="/">Back</a>
+    </div>
+    <footer>
+        <p style="text-align: center; margin:50px; color: white;"><b>CO-TRIP 19 </b> &#169 2021 Yusuf Agung Nugroho </p>
+    </footer>
+</body>

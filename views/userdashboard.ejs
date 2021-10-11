@@ -1,0 +1,120 @@
+<%- include('_header') %>
+<% model.forEach(function(tourist) { %>
+<body class="bg-dark animate__animated animate__fadeInUp">
+    
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+   
+
+            <% switch (tourist.origin) {
+                case 'Indonesia' : %>
+                <h1 id style="text-align: center; font-weight: lighter;">Selamat datang !!</h1>   
+                        <% break;
+                
+                case 'China' : %>
+                <h1 id style="text-align: center; font-weight: lighter;">欢迎 !!</h1>
+                        <% break;
+                
+                case 'South Korea' : %>
+                <h1 id style="text-align: center; font-weight: lighter;">환영하다 !!</h1> 
+                        <% break;
+
+                case 'Japan' : %>
+                <h1 id style="text-align: center; font-weight: lighter;">らっしゃい !!</h1>  
+                <%break      
+
+                 default : %>
+                <h1 id style="text-align: center; font-weight: lighter;">welcome !!</h1> 
+                <% break;
+                        
+                } %>
+
+                <% if(tourist.gender==='male'){ %>
+                 <h1 id style="text-align: center;">Mr. <%=tourist.name%></h1> 
+                <%}else { %>
+                <h1 id style="text-align: center;;">Ms. <%=tourist.name%></h1> 
+                <%} %>
+                <div class ="d-flex justify-content-end">
+                    <div class="p-2"><a href="/userlogin">Log Out</a></div>
+                    <div class="p-2"><a href="/userpass/<%=tourist.id%>">Edit Credential</a></div>
+                </div>
+
+            <p1> Your passport number is : <b><%=tourist.pass_num%></b></p1>
+            <p1> Nationality : <b><%=tourist.origin%></b></p1>
+
+            <% switch (tourist.vacc) {
+                case 0 : %>
+                <p1>Vaccination status : <b>You didn't receive any vaccine yet</b></h1>   
+                        <% break;
+                
+                case 1 : %>
+                <p1>Vaccination status : <b>Received phase 1 vaccine</b></h1>
+                        <% break;
+                
+                case 2 : %>
+                <p1>Vaccination status : <b>Received phase 2 vaccine</b></h1> 
+                        <% break;
+
+                default : %>
+                <p1>-</h1> 
+                <% break;        
+                } %>
+
+ 
+    </div>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+    <form action="/userdestination" method="POST">
+        <div class="form-group">
+            <label for="destination">Please select your destination country</label>
+            <input list="destination" name="destination" class="form-control" value="<%= tourist.destination %>">
+            <datalist id="destination" >
+                <option value=< href="/aa">coba</a>>
+                <option value="America"></option>         
+                <option value="Australia">
+                <option value="China">
+                <option value="India">
+                <option value="Indonesia">
+                <option value="Japan"></option>
+                <option value="South Korea"></option>
+                <option value="United Kingdom"></option>
+            </datalist>
+        </div> 
+        <input type="hidden" name="id" id="id" value="<%=tourist.id%>" class="form-control">
+        <button  class="btn btn-dark"  type="submit">Confirm</button>
+    </form>
+</div>
+
+
+<%if(tourist.origin == tourist.destination) {%>
+<div class="card" style="padding:20px; margin:12px auto; width:1000px;"> 
+    <h1 style="font-weight: lighter; text-align: center;">You are the citizen of <b><%=tourist.origin%></b></h1>
+</div>
+<% } else{ %>  
+<div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+<h3 style="font-weight: lighter; text-align: center;"> Your request to enter <b> <%=tourist.destination %> </b> is</h3>
+
+<% if(tourist.status=='1' && tourist.c_status == '1'){ %>
+    <h3 style=" color:greenyellow; text-align: center;">Approved</h3>
+<% } else { %>
+    <h3 style="color:red;text-align: center;">Rejected</h1> 
+<%} %>%>
+
+<% if(tourist.status=='0' && tourist.c_status == '0'){ %>
+    <p style=" text-align: center;">Reason : This country isn't safe yet and you are not meet the require phase of vaccination</h3>
+<% } %> 
+<% if(tourist.status=='0' && tourist.c_status == '1'){ %>
+    <p style=" text-align: center;">Reason : you are not meet the require phase of vaccination</h3>
+<% } %> 
+<% if(tourist.status=='0' && tourist.c_status == null){ %>
+    <p style=" text-align: center;">Reason : This country doesnt add the information yet</h3>
+<% } %> 
+<% if(tourist.status=='1' && tourist.c_status == '0'){ %>
+    <p style=" text-align: center;">Reason : This country isn't safe yet</h3>
+<% } %>  
+
+<% if(tourist.destination == null) { %>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+<%}%>
+</div>
+    <% }%>
+</body>
+<% }); %>

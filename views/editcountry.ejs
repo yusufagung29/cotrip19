@@ -1,0 +1,25 @@
+<%- include('_header') %>
+<% model.forEach(function(country) { %>
+
+<body style="padding: 50px;">
+    <div class = "card" style="padding:20px; margin:12% auto; width: 50%;">
+        <h3 style="text-align: center;">Edit Country</h3>
+        <p>Country name : <b><%=country.name%></b></p>
+        <p>Population : <b><%=country.pop%></b></p>
+        <form action="/editcountry/<%=country.id%>" method="POST">
+
+            <div class="form-group">
+                  <label for="vacc">Edit Vaccinated Citizen</label>
+                  <input type="text" name="vacc" id="vacc" value="<%=country.c_vacc%>" placeholder="vacc" class="form-control">
+            </div>
+          
+            
+              <button  class="btn btn-dark"  type="submit">Edit</button>
+              
+          </form>
+         <a href="/addcountry">back</a> 
+    </div>
+    <% }); %>
+    <%- include('_footer') %>
+</body>
+

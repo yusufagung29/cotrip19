@@ -1,0 +1,20 @@
+<%- include('_header') %>
+
+<% model.forEach(function(country) { %>
+<body>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+         <h1 style="text-align: center;"> Welcome Back Master</h1>
+         <p style="text-align: center;">"With great power comes great responsibility"</p>
+         <p style="text-align: right;"><a href="/masterlogin">Log Out</a></p>
+    </div>
+
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <h4 style="text-align: center;"> For you are master admin, you have authority to the following things</h1>
+        <div class ="d-flex justify-content-center">
+            <p class="p-2"><a class="btn btn-primary" href="/addadmin">Add/Edit admin credential</a></p>
+            <p class="p-2"><a class="btn btn-primary" href="/addcountry">Add/Edit country</a></p>
+       </div>
+        </div>
+
+
+<% }); %>

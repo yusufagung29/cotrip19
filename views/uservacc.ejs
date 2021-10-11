@@ -1,0 +1,31 @@
+<%- include('_header') %>
+
+<% model.forEach(function(tourist) { %>
+    <body class="animate__animated animate__fadeInUp">
+        <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+            <p><B>Citizen's information</B></p>
+            <p> Name : <b><%=tourist.name%></b></p>
+            <p> Passport number : <b><%=tourist.pass_num%></b></p>
+            <p> Gender : <b><%=tourist.gender%></b></p>
+            <p> Current Vaccination status : <b><%=tourist.vacc%></b></p>
+        </div>
+
+        <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+            <form action="/updatevacc" method="POST">
+                <div class="form-group">
+                    <input type="hidden" class="origin" id ="origin" name="origin" value="<%=tourist.origin%>">
+                    <input type="hidden" class="id" id ="id" name="id" value="<%=tourist.id%>">
+                    <label for="vacc">Edit citizen vaccination status</label>
+                    <select name="vacc" id="vacc" value="<%=tourist.vacc%>" class="form-control">
+                        <option value="">Choose</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div> 
+                <button  class="btn btn-dark"  type="submit">submit</button>
+            </form>
+        </div>
+    </body>
+    
+<% }); %>

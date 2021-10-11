@@ -1,0 +1,46 @@
+<%- include('_header') %>
+
+    <body style="padding:20px">
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <h3 style="text-align: center;">Admin Management Interface</h3>
+        <p>
+            1. You had given the authority to add new admin to represent the country
+            <br>
+            2. In case of compromise please delete the account, or change the username/password.
+            <br>
+            3. Use this privillege wisely.
+        </p>
+    </div>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <a class="btn btn-primary" href="/createadmin">Add Admin</a>
+        <br>
+        <a class="btn btn-danger" href="/masteradmin">Back</a>
+    </div>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+    <table class="table table-bordered" style="text-align: center; margin-right: 30px;">
+        <thead class="thead-dark">
+                <tr>
+                    <th>Country</th>
+                    <th>username</th>
+                    <th>password</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+        </thead>
+        <tbody>
+            <% model.forEach(function(admin) { %>
+                <tr>
+                    <td><%=admin.country %></td>
+                    <td><%=admin.username %></td>
+                    <td><%=admin.password %></td>
+                    <td> <a  class="btn btn-primary" href="/editadmin/<%= admin.id %>">Edit</a></td>
+                    <td><form action="/deleteadmin/<%= admin.id %>" method="POST">
+                        <button class="btn btn-danger" type="submit" >Delete</button>
+                        </form></td>
+                </tr>  
+                     <% }); %>
+     </tbody>
+</table>
+    </div>
+    <%- include('_footer') %>
+    </body>

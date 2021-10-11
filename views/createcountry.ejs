@@ -1,0 +1,29 @@
+<%- include('_header') %>
+
+
+<body style="padding: 50px;">
+    <div class = "card" style="padding:20px; margin:12% auto; width: 50%;">
+        <h3 style="text-align: center;">Add New Country</h3>
+        <form action="/createcountry" method="POST">
+            <div class="form-group">
+                <label for="country">Country Name</label>
+                <input type="text" name="country" id="country" placeholder="Country Name (ex: Indonesia)" class="form-control">
+            </div>
+
+            <div class="form-group">
+                  <label for="pop">Population</label>
+                  <input type="number" name="pop" id="pop" placeholder="Population (ex: 1000000)" class="form-control">
+            </div>
+          
+              <div class="form-group">
+                  <label for="vacc">Vaccinated Population</label>
+                  <input type="number" name="vacc" id="vacc" placeholder="Vaccinated Population (ex: 1000000)" class="form-control">
+              </div>
+
+              <button  class="btn btn-primary"  type="submit">Create</button>
+              
+          </form>
+         <a href="/addcountry">back</a> 
+    </div>
+    <%- include('_footer') %>
+</body>

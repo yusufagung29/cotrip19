@@ -1,0 +1,35 @@
+<%- include('_header') %>
+
+<% model.forEach(function(country) { %>
+<body class="animate__animated animate__fadeInUp">
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <h1 style = "text-align: center; font-weight: lighter;"> You are representing <b><%=country.name%></b></h1>
+        <h4 style = "text-align: center; font-weight: lighter;"> Please provide the information truthfully</h4>
+        <a style="text-align: right;    " href="/adminlogin">Log Out</a>
+    </div>
+
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <h4 style = "font-weight: lighter;"> Your Country information</b></h1>
+            <br>
+        <p id = > Population : <b><%= country.pop %></b></p>
+        <p> Already vaccinated : <b><%= country.c_vacc %></b> (<%=country.percentage%>%)</p>
+
+        <% if(country.c_status == '1') { %>
+            <p> Herd immunity status : <b>Achieved</b></p>
+            <h4 style="color:green;text-align: center;"> YOUR COUNTRY IS ALMOST CLEAR!</h4>
+        <% } else { %>
+            <p> Herd immunity status : <b>No</b></p>
+            <h4 style="color:red;text-align: center;"> YOUR COUNTRY IS STILL AT HIGH RISK!</h4>
+        <%} %>
+    </div>
+
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <form action="/adminedit" method="POST">
+            <input type="hidden" name="name" id="name" value="<%=country.name%>" class="form-control">
+            <button  class="btn btn-dark"  type="submit">Edit citizen's vaccination</button>
+        </form>
+    </div>
+    <%- include('_footer') %>
+</body>
+
+<% }); %>

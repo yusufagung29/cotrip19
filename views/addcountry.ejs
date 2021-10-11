@@ -1,0 +1,50 @@
+<%- include('_header') %>
+
+    <body style="padding:20px">
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <h3 style="text-align: center;">Country Management Interface</h3>
+        <p>
+            1. You had given access to delete and edit a country 
+            <br>
+            2. Edit to make changes to country's population that already got vaccination.
+            <br>
+            3. Delete if the information of the country (e.g the population) is incorrect.
+            <br>
+            4. Deleted country can be add again via create button, you can also insert new country that has not been appear in the list
+        </p>
+    </div>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+        <a class="btn btn-primary" href="/createcountry">Add country</a>
+        <br>
+        <a class="btn btn-danger" href="/masteradmin">Back</a>
+    </div>
+    <div class="card" style="padding:20px; margin:12px auto; width:1000px;">
+    <table class="table table-bordered" style="text-align: center; margin-right: 30px;">
+        <thead class="thead-dark">
+                <tr>
+                    <th>Country</th>
+                    <th>Population</th>
+                    <th>Vaccinated Population</th>
+                    <th>Percentage</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+        </thead>
+        <tbody>
+            <% model.forEach(function(country) { %>
+                <tr>
+                    <td><%=country.name %></td>
+                    <td><%=country.pop %></td>
+                    <td><%=country.c_vacc %></td>
+                    <td><%=country.percentage %></td>
+                    <td> <a  class="btn btn-primary" href="/editcountry/<%= country.id %>">Edit</a></td>
+                    <td><form action="/deletecountry/<%= country.id %>" method="POST">
+                        <button class="btn btn-danger" type="submit" >Delete</button>
+                        </form></td>
+                </tr>  
+                     <% }); %>
+     </tbody>
+</table>
+    </div>
+    <%- include('_footer') %>
+    </body>
